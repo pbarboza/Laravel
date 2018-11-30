@@ -37,9 +37,14 @@ class SocioController extends Controller
      */
      public function store(Request $request)
     {
+
+        $data = request()->validate([
+            'Apellido'=>'required']);
+
        $socio = new Socio;
-       $socio -> Apellido = $request->Apellido;
+       $socio -> idSocio = $request->DNI;
        $socio -> Nombre = $request->Nombre;
+       $socio -> Apellido = $request->Apellido;
        $socio -> FechaNacimiento = $request->FechaNacimiento;
        $socio -> Domicilio = $request->Domicilio;
        $socio -> Localidad = $request->Localidad;

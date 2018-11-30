@@ -69,12 +69,6 @@
     <h1><i class="icon icon-plus"></i> NUEVO SOCIO</h1>
   </div>
 
-@if ($errors->any())
-<p> hay errores </p>
-
-@endif
-
-
 
   <div class="container-fluid">
     <div class="row-fluid">
@@ -101,7 +95,7 @@
               <div class="control-group">
                 <label class="control-label">DNI</label>
                 <div class="controls">
-                  <input type="text" name="idSocio" id="idSocio" class="span7">
+                  <input type="text" name="DNI" id="DNI" class="span7">
                 </div>
               </div>
               <div class="control-group">
