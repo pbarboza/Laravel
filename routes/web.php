@@ -23,9 +23,24 @@ Route::get('/index', function () {
 
 
 
+
 Route::resource('/socios','SocioController');
 Route::resource('/usuario','UsuarioController');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('socios/{idSocio}/destroy',[
+ 'uses' => 'SocioController@destroy',
+  'as' => 'socios.destroy'
+
+ ]);
+
+Route::get('usuarios/{idUsuario}/destroy',[
+ 'uses' => 'UsuarioController@destroy',
+  'as' => 'usuario.destroy'
+
+ ]);
+
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');

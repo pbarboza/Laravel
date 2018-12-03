@@ -97,6 +97,9 @@ class SocioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $socio = socio::find($id);
+        $socio->delete();
+        Session::flash('message','El Socio '. $socio->Apellido. ', ' .$socio->Nombre .' a sido borrado en forma exitosa'); 
+       return redirect('socios');
     }
 }

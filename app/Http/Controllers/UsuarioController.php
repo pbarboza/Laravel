@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Usuario;
+use Illuminate\Support\Facades\Session;
 
 class UsuarioController extends Controller
 {
@@ -44,7 +45,7 @@ class UsuarioController extends Controller
        $usuario -> Usuario = $request->Usuario;
        $usuario -> Pass = $request->Pass;
        $usuario -> save();
-
+       Session::flash('message','Se agrego un nuevo Usuario'); 
        return redirect('usuario');
     }
 
@@ -88,8 +89,11 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+     public function destroy($id)
     {
-        //
+        $usuario = usuario::find($id);
+        $usuario->delete();
+        Session::flash('message','El Usuario '. $usuario->Apellido. ', ' .$usuario->Nombre .' a sido borrado en forma exitosa'); 
+       return redirect('usuario');
     }
 }

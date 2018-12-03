@@ -70,7 +70,7 @@
               </div>
              
     @endif  
-  <a href="javascript:void(0);"</a>
+<a href="javascript:void(0);"</a> 
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
@@ -105,22 +105,39 @@
                         <li><a href="javascript:void(0);" class="actionEditItem" data-module="empresas" data-id="348"><i class="icon-user-md"></i>Tutores</a></li>
                         <li><a href="javascript:void(0);" class="actionEditItem" data-module="empresas" data-id="348"><i class="icon-copy"></i>Documentación</a></li>
                         <li><a href="javascript:void(0);" class="actionPlantillas" data-module="empresas" data-id="348"><i class="icon icon-money"></i>Emitir Recibos</a></li>
-                        <li><a href=""  class="" data-module="empresas" data-id="348"><i class="icon-trash"></i>Eliminar</a></li>
+                         <li><a href="{{route('socios.destroy',$socio->idSocio)}}" onclick="return confirm('¿Seguro que deseas eliminar el Socio?')"><i class="icon-trash"></i>Eliminar</a></li> 
+
+                        <!-- <li><a href="#myAlert" data-toggle="modal" class=""><i class="icon-trash"></i>Eliminar</a></li> -->
                       </ul>
                     </div>
                   </td>
                 </tr>
+
                @endforeach
               </tbody>
             </table>
-          </div>
-
+           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+
+
+<div id="myAlert" class="modal hide">
+                          <div class="modal-header">
+                            <button data-dismiss="modal" class="close" type="button">×</button>
+                            <h3>Eliminación de Socios</h3>
+                          </div>
+                          <div class="modal-body">
+                            <p>¿Está seguro que desea eliminar el Socio?</p>
+                          </div>
+                          <div class="modal-footer"> 
+                            <a href="{{route('socios.destroy',$socio->idSocio)}}" data-dismiss="modal" class="btn btn-primary" >Aceptar</a> 
+                            <a data-dismiss="modal" class="btn" href="#">Cancelar</a> 
+                          </div>
+</div>
 
 <div class="row-fluid">
   <div id="footer" class="span12"> 2018 © RBS Development  </div>

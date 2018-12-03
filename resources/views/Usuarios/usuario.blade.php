@@ -63,6 +63,13 @@
     <h1><i class="icon icon-user"></i> USUARIOS</h1>
      <div id="search"> <a href="{{route('usuario.create')}}"</a> <button class="btn btn-info btn-large"><i class="icon icon-plus"></i> Nuevo Usuario </button> </div>
   </div>
+ @if (Session::has('message'))
+              <p>
+              <div class="alert alert-success"> {{ Session::get('message')}}
+                <button class="close" data-dismiss="alert">×</button>
+              </div>
+             
+    @endif  
 
   <a href="javascript:void(0);"</a>
   <div class="container-fluid">
@@ -93,8 +100,16 @@
                       <ul class="dropdown-menu" style="left:auto; right:auto; top:auto">
                         <li><a href="javascript:void(0);" class="actionEditItem" data-module="empresas" data-id="348">Modificar</a></li>
                         <li><a href="javascript:void(0);" class="actionEditItem" data-module="empresas" data-id="348">Suspender</a></li>
-                        <li><a href=""  class="" data-module="empresas" data-id="348">Eliminar</a></li>
-                      </ul>
+
+                   <!--     <li><a href="#myAlert" data-toggle="modal" class=""><i class="icon-trash"></i>Eliminar</a></li>  -->
+                        
+
+                     <li><a href="{{route('usuario.destroy',$usuario->idUsuario)}}" onclick="return confirm('¿Seguro que deseas eliminar el Usuario?')"><i class="icon-trash"></i>Eliminar</a></li> 
+
+
+                     </ul>
+
+
                     </div>
                   </td>
                 </tr>
@@ -108,6 +123,16 @@
   </div>
 </div>
 
+<div id="myAlert" class="modal hide">
+              <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">×</button>
+                <h3>Eliminación de Usuario</h3>
+              </div>
+              <div class="modal-body">
+                <p>¿Está seguro que desea eliminar el Usuario?</p>
+              </div>
+              <div class="modal-footer"> <a href="{{route('usuario.destroy',$usuario->idUsuario)}}"data-dismiss="modal" class="btn btn-primary" >Aceptar</a> <a data-dismiss="modal" class="btn" href="#">Cancelar</a> </div>
+</div>
 
 <div class="row-fluid">
   <div id="footer" class="span12"> 2018 © RBS Development  </div>
@@ -123,6 +148,9 @@
 <script src="plugin/js/jquery.dataTables.min.js"></script> 
 <script src="plugin/js/matrix.js"></script> 
 <script src="plugin/js/matrix.tables.js"></script>
+<script src="plugin/js/jquery.gritter.min.js"></script> 
+<script src="plugin/js/jquery.peity.min.js"></script> 
+<script src="plugin/js/matrix.interface.js"></script> 
 
 
 </body>
