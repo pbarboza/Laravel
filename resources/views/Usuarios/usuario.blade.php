@@ -98,19 +98,11 @@
                   <td>
                     <div class="center" class="btn-group center"><a class="btn btn-default" title="Acciones" data-toggle="dropdown" href="javascript:void(0);"><i class="icon icon-cog"></i></a>
                       <ul class="dropdown-menu" style="left:auto; right:auto; top:auto">
-                        <li><a href="javascript:void(0);" class="actionEditItem" data-module="empresas" data-id="348">Modificar</a></li>
-                        <li><a href="javascript:void(0);" class="actionEditItem" data-module="empresas" data-id="348">Suspender</a></li>
-
+                        <li><a href="{{route('usuario.edit',$usuario->idUsuario)}}"><i class="icon-pencil"></i>Modificar</a></li> 
+                        <li><a href="{{route('usuario.destroy',$usuario->idUsuario)}}" onclick="return confirm('¿Seguro que deseas eliminar el Usuario?')"><i class="icon-trash"></i>Eliminar</a></li> 
                    <!--     <li><a href="#myAlert" data-toggle="modal" class=""><i class="icon-trash"></i>Eliminar</a></li>  -->
-                        
-
-                     <li><a href="{{route('usuario.destroy',$usuario->idUsuario)}}" onclick="return confirm('¿Seguro que deseas eliminar el Usuario?')"><i class="icon-trash"></i>Eliminar</a></li> 
-
-
-                     </ul>
-
-
-                    </div>
+                       </ul>
+                   </div>
                   </td>
                 </tr>
                @endforeach
@@ -123,21 +115,13 @@
   </div>
 </div>
 
-<div id="myAlert" class="modal hide">
-              <div class="modal-header">
-                <button data-dismiss="modal" class="close" type="button">×</button>
-                <h3>Eliminación de Usuario</h3>
-              </div>
-              <div class="modal-body">
-                <p>¿Está seguro que desea eliminar el Usuario?</p>
-              </div>
-              <div class="modal-footer"> <a href="{{route('usuario.destroy',$usuario->idUsuario)}}"data-dismiss="modal" class="btn btn-primary" >Aceptar</a> <a data-dismiss="modal" class="btn" href="#">Cancelar</a> </div>
-</div>
+
 
 <div class="row-fluid">
   <div id="footer" class="span12"> 2018 © RBS Development  </div>
 </div>
 
+}
 
 
 <script src="plugin/js/jquery.min.js"></script> 
@@ -148,8 +132,7 @@
 <script src="plugin/js/jquery.dataTables.min.js"></script> 
 <script src="plugin/js/matrix.js"></script> 
 <script src="plugin/js/matrix.tables.js"></script>
-<script src="plugin/js/jquery.gritter.min.js"></script> 
-<script src="plugin/js/jquery.peity.min.js"></script> 
+
 <script src="plugin/js/matrix.interface.js"></script> 
 
 

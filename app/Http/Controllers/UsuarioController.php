@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Usuario;
 use Illuminate\Support\Facades\Session;
+use Flash;
+
+
 
 class UsuarioController extends Controller
 {
@@ -68,7 +71,8 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+       $usuario = Usuario::find($id);
+       return view('Usuarios/editarusuario')->with('usuario',$usuario);
     }
 
     /**
@@ -80,7 +84,15 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $usuario = Usuario::find($id);
+        $usuario->Apellido = $request->Apellido;
+        $usuario->Nombre = $request->Nombre;
+        $usuario->Usuario = $request->Usuario;
+        $usuario->Pass = $request->Pass;
+        $usuario -> save();
+        Session::flash('message','Se editó el Usuario '. $usuario->Nombre. ' con Éxito'); 
+        return redirect('usuario');
+
     }
 
     /**
@@ -93,7 +105,7 @@ class UsuarioController extends Controller
     {
         $usuario = usuario::find($id);
         $usuario->delete();
-        Session::flash('message','El Usuario '. $usuario->Apellido. ', ' .$usuario->Nombre .' a sido borrado en forma exitosa'); 
+        Session::error('message','El Usuario '. $usuario->Apellido. ', ' .$usuario->Nombre .' a sido borrado en forma exitosa'); 
        return redirect('usuario');
     }
 }
