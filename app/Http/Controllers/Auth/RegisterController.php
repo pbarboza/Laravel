@@ -3,10 +3,22 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
+use Validator;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+// use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+
+
+
+
+use Flash;
 
 class RegisterController extends Controller
 {
@@ -28,45 +40,83 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/inicio';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(){
+    $this->middleware('auth');
+  }
+
+
+     public function index()
     {
-        $this->middleware('guest');
+        $user= User::get();
+        return view ('Usuarios.usuario')->with('User',$user);
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+ public function destroy($id)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+        $user = User::find($id);
+        $user->delete();
+        Session::flash('message','El Usuario '. $user->apellido. ', ' .$user->name .' a sido borrado en forma exitosa'); 
+       return redirect('usuario');
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function create(array $data)
+
+ public function edit($id)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+       $user = User::find($id);
+       return view('Usuarios/editarusuario')->with('usuario',$user);
     }
+
+    public function create()
+    {
+        return view('Usuarios.nuevousuario');
+    }
+
+
+  public function update(Request $request, $id)
+    {
+       $request->validate([
+            'name' => 'required|min:3|max:255',
+            'apellido' => 'required|min:3|max:255',
+            'usuario' => 'required|min:6|max:255|unique:users,usuario,'.$id.',id',
+            'perfil' => 'required|max:255',
+            'password' => 'required|min:6',
+         ]);
+
+
+        $user = User::find($id);
+        $user->apellido = $request->apellido;
+        $user->name = $request->name;
+        $user->usuario = $request->usuario;
+        $user->password = Hash::make($request['password']);
+        $user -> passvisible =$request->password;
+        $user->perfil = $request->perfil;
+        $user -> save();
+        Session::flash('message','Se editó el Usuario '. $user->name. ' con Éxito'); 
+        return redirect('usuario');
+
+    }   
+
+
+public function store(UserRequest $request)
+    {
+       $usuario = new User;
+       $usuario -> apellido = $request->apellido;
+       $usuario -> name = $request->name;
+       $usuario -> usuario = $request->usuario;
+       $usuario -> password = Hash::make($request['password']);
+       $usuario -> passvisible =$request->password;
+       $usuario -> perfil = $request->perfil;
+       $usuario -> save();
+     Session::flash('message','Se agregó el Usuario '. $usuario->name. ' con Éxito'); 
+       return redirect('usuario');
+    }
+
 }
+

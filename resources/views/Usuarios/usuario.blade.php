@@ -1,140 +1,140 @@
-<!DOCTYPE html>
-<!-- saved from url=(0096)file:///C:/Users/savoy/Documents/AERO/matrix-admin-package-full/matriz-admin-old/HTML/index.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>AERO CLUB RUGBY</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="plugin/css/bootstrap.min.css" />
-<link rel="stylesheet" href="plugin/css/bootstrap-responsive.min.css" />
-<link rel="stylesheet" href="plugin/css/uniform.css" />
-<link rel="stylesheet" href="plugin/css/select2.css" />
-<link rel="stylesheet" href="plugin/css/matrix-style.css" />
-<link rel="stylesheet" href="plugin/css/matrix-media.css" />
-<link href="plugin/font-awesome/css/font-awesome.css" rel="stylesheet" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
-
-</head>
-<body>
-
-<!--Header-part-->
-<div id="header">
-  <h1><a href="file:///C:/Users/savoy/Documents/AERO/matrix-admin-package-full/matriz-admin-old/HTML/dashboard.html"></a></h1>
-</div>
-<!--close-Header-part--> 
+@extends ('template.main')
+@section('title',' Usuarios')
+@section('content')
 
 
-<!--top-Header-menu-->
-<div id="user-nav" class="navbar navbar-inverse">
-  <ul class="nav" style="width: auto; margin: 0px;">
-   
-   <li class=""><a title="Hacer click para cerrar sesión" href="/"> <i class="icon icon-share-alt"></i> <span class="text">Cerrar Sesión</span></a></li>
-  </ul>
-</div>
-<!--close-top-Header-menu-->
-<!--sidebar-menu-->
-<div id="sidebar"><a href="" class="visible-phone"><i class="icon icon-home"></i>Inicio</a>
-  <ul style="display: block;">
-    <li> <a href="/socios"><i class="icon icon-group"></i> <span>Socios</span></a> </li>
-    <li> <a href=""><i class="icon icon-money"></i> <span>Recibos</span></a> </li>
-    <li> <a href=""><i class="icon icon-file"></i> <span>Informes</span></a> </li>
-    <li class="submenu"> <a href="#"> <i class="icon icon-cog"></i>
-      <span>Configuración</span> <span class="badge badge-inverse">3</span></a>
-      <ul>
-        <li><a href="#"> <i class="icon icon-file"></i> Documentación</a></li>
-        <li><a href="#"> <i class="icon icon-gift"></i> Prestaciones</a></li>
-        <li><a href="#"> <i class="icon icon-eye-open"></i> Perfiles de Socios</a> </li>
-      </ul>
-    </li>
-    <li class="submenu"> <a href="#"> <i class="icon icon-user"></i>
-        <span>Usuarios</span> <span class="badge badge-inverse">2</span></a>
-      <ul>
-        <li class="active"> <a href="/usuario"><i class="icon icon-list"></i> <span>Usuarios</span></a> </li>
-        <li> <a href="#"> <i class="icon icon-eye-open"></i> Perfiles de Usuarios</a> </li>
-      </ul>
-    </li>
-    </ul>
-</div>
-<!--sidebar-menu-->
+<div class="container">
+        <br><br>
 
 
-<div id="content">
-  <div id="content-header">
-    <div id="breadcrumb"><a href="/index" class="tip-bottom" data-original-title="Ir al inicio"><i class="icon-home"></i> Inicio</a><a href="/usuario" class="current">Usuarios</a> </div>
-    <h1><i class="icon icon-user"></i> USUARIOS</h1>
-     <div id="search"> <a href="{{route('usuario.create')}}"</a> <button class="btn btn-info btn-large"><i class="icon icon-plus"></i> Nuevo Usuario </button> </div>
-  </div>
+      
+        <div class="widget-title"> <span class="icon"></span>
+                    <h4>Listado de Usuarios</h4>
+                    <div class="button" align="right">
+                    <a href="{{route('usuario.create')}}" <button type="button" class="btn btn-primary btn-small"   align="right"> <i class="fas fa-user-plus"></i> Nuevo Usuario</button></a>
+                    </div>
+        </div>     
+        <br>
+
  @if (Session::has('message'))
               <p>
               <div class="alert alert-success"> {{ Session::get('message')}}
                 <button class="close" data-dismiss="alert">×</button>
               </div>
              
-    @endif  
+    @endif 
 
-  <a href="javascript:void(0);"</a>
-  <div class="container-fluid">
-    <div class="row-fluid">
-      <div class="span12">
-        <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Listado de Usuarios</h5>
-          </div>
-          <div class="widget-content nopadding">
-             <table class="table table-bordered data-table">
-              <thead>
-                <tr>
-                  <th>Apellido</th>
-                  <th>Nombre</th>
-                  <th>Usuario</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-            <tbody>
-              <tr class="gradeX">
-              @foreach($usuario as $usuario)
-                  <td>{{$usuario->Apellido}}</td>
-                  <td>{{$usuario->Nombre}}</td>
-                  <td>{{$usuario->Usuario}}</td>          
-                  <td>
-                    <div class="center" class="btn-group center"><a class="btn btn-default" title="Acciones" data-toggle="dropdown" href="javascript:void(0);"><i class="icon icon-cog"></i></a>
-                      <ul class="dropdown-menu" style="left:auto; right:auto; top:auto">
-                        <li><a href="{{route('usuario.edit',$usuario->idUsuario)}}"><i class="icon-pencil"></i>Modificar</a></li> 
-                        <li><a href="{{route('usuario.destroy',$usuario->idUsuario)}}" onclick="return confirm('¿Seguro que deseas eliminar el Usuario?')"><i class="icon-trash"></i>Eliminar</a></li> 
-                   <!--     <li><a href="#myAlert" data-toggle="modal" class=""><i class="icon-trash"></i>Eliminar</a></li>  -->
-                       </ul>
-                   </div>
-                  </td>
-                </tr>
-               @endforeach
-              </tbody>
-            </table>
-          </div>
-        </div>
+
+
+           <table class="table table-striped table-borderer" id="UsuariosTabla">
+                        <thead>
+                          <tr>
+                            <th>Apellido</th>
+                            <th>Nombre</th>
+                            <th>Usuario</th>
+                            <th>Perfil</th>
+                            <th>Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                         <tr class="gradeX">
+                            @foreach($User as $user)
+                                <td>{{$user->apellido}}</td>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->usuario}}</td>       
+                                <td>{{$user->perfil}}</td>      
+                                <td>
+                                  <a href="{{route('usuario.edit',$user->id)}}" class="btn btn-success">Editar</a>
+                                  <a href="{{route('usuario.destroy',$user->id)}}" onclick="return confirm('¿Seguro que deseas eliminar el Usuario?')" class="btn btn-danger">Eliminar</a>
+                                </td>
+
+
+                           </tr>
+                           @endforeach
+                      </tbody>
+                    </table>
+  </div>
+
+<div class="modal fade" id="NuevoUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nuevo Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+
+          @if (count($errors)>0)
+              <div class="alert alert-danger" role="alert">
+                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                  </button>
+                   <ul>
+                   @foreach ($errors -> all() as $error)
+                      <li>{{$error}}</li>
+                   @endforeach
+                   </ul>
+                   
+             </div>
+          @endif
+
+
+          {!!Form::open (['route' => 'usuario.store', 'method' =>'post', 'novalidate', 'class' => 'form-horizontal'])!!} 
+
+              <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Apellido</label>
+                   <div class="col-sm-10">
+                  <input type="text"  name="apellido" id="apellido" class="form-control input-sm" required >
+                </div>
+              </div>
+
+                <div class="form-group row">
+                 <label class="col-sm-2 col-form-label">Nombre</label>
+                <div class="col-sm-10">
+                  <input type="text" name="name" id="name" class="form-control input-sm" required>
+                </div>
+              </div>
+
+                <div class="form-group row">
+                 <label class="col-sm-2 col-form-label">Usuario</label>
+               <div class="col-sm-10">
+                  <input type="text" name="usuario" id="usuario" class="form-control input-sm" required>
+                </div>
+              </div>
+
+                <div class="form-group row">
+               <label class="col-sm-2 col-form-label">Contraseña</label>
+               <div class="col-sm-10">
+                  <input type="password" name="password" id="password" class="form-control input-sm" required>
+              </div>  
+                </div>
+
+              <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Perfil</label>
+                    <div class="col-sm-10">
+                       <select  name="perfil" id="perfil" class="form-control input-sm" required>
+                           <option selected> Invitado</option>
+                           <option>Administrador</option>
+                       </select>
+                    </div>
+               </div>
+             
+            <br>
+
+            <div class="form-actions" align="right">
+                     
+                     {!! Form::submit('Guardar', ['class' => 'btn btn-success ' ] ) !!}
+                     <a href="/usuario"<button type="submit" class="btn btn-danger">Cancelar</button> </a>
+            </div>
+      {!!Form::close()!!} 
     </div>
   </div>
 </div>
 
 
-
-<div class="row-fluid">
-  <div id="footer" class="span12"> 2018 © RBS Development  </div>
-</div>
-
-}
+@endsection
 
 
-<script src="plugin/js/jquery.min.js"></script> 
-<script src="plugin/js/jquery.ui.custom.js"></script> 
-<script src="plugin/js/bootstrap.min.js"></script> 
-<script src="plugin/js/jquery.uniform.js"></script> 
-<script src="plugin/js/select2.min.js"></script> 
-<script src="plugin/js/jquery.dataTables.min.js"></script> 
-<script src="plugin/js/matrix.js"></script> 
-<script src="plugin/js/matrix.tables.js"></script>
 
-<script src="plugin/js/matrix.interface.js"></script> 
-
-
-</body>
-</html>

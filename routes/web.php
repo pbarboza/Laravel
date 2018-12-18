@@ -1,46 +1,36 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|Route::get('/socios', function () {
-    return view('socios');
+	Route::get('/','Auth\LoginController@showLoginForm'); 
+
+	
+	Route::post('login','Auth\LoginController@login')->name('login');
+	Route::post('logout','Auth\LoginController@logout')->name('logout');
+	Route::get ('inicio','HomeController@index')->name('inicio');
+
+
+
+
+Route::group(['middleware' => 'auth'], function () {
+
+
+
+	Route::resource('/socios','SocioController');
+	Route::resource('/usuario','Auth\RegisterController');
+
+
+
+	Route::get('socios/{idSocio}/destroy',[
+ 		'uses' => 'SocioController@destroy',
+  		'as' => 'socios.destroy'
+
+ 	]);
+
+	Route::get('/usuario/{id}/destroy',[
+	 'uses' => 'Auth\RegisterController@destroy',
+	  'as' => 'usuario.destroy'
+
+	 ]);
+
 });
-*/
+	
 
-Route::get('/', function () {
-    return view('login');
-})->name('login');
-
-Route::get('/index', function () {
-    return view('index');
-});
-
-
-
-
-Route::resource('/socios','SocioController');
-Route::resource('/usuario','UsuarioController');
-
-
-Route::get('socios/{idSocio}/destroy',[
- 'uses' => 'SocioController@destroy',
-  'as' => 'socios.destroy'
-
- ]);
-
-Route::get('usuarios/{idUsuario}/destroy',[
- 'uses' => 'UsuarioController@destroy',
-  'as' => 'usuario.destroy'
-
- ]);
-
-
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
