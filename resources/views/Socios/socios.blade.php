@@ -13,7 +13,18 @@
                     <div class="button" align="right">
                     <a href="{{route('socios.create')}}" <button type="button" class="btn btn-primary btn-small"   align="right"> <i class="fas fa-user-plus"></i> Nuevo Socio</button></a>
                     </div>
-        </div>     
+       </div>     
+
+                    <!-- Buscador de socios -->
+                    {!!Form::open (['route' => 'socios.index', 'method' =>'GET' , 'class' => 'navbar-form pull-left'])!!} 
+                    <br>
+                        <div class="form-group">
+                          {!! Form::text ('Apellido',null,['class'=>'form-control', 'placeholder'=>'Buscar socio','aria-describedby' => 'search']) !!}
+                        </div>
+
+                    {!!Form::close()!!} 
+                    <!-- Fin Buscador de socios -->
+
         <br>
 
  @if (Session::has('message'))
@@ -59,6 +70,7 @@
                @endforeach
               </tbody>
           </table>  
+  {{$socios->links()}}
 </div>
 
 @endsection

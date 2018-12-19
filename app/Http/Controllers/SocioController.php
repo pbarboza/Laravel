@@ -22,9 +22,9 @@ class SocioController extends Controller
   }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $socios= socio::get();
+        $socios= socio::search($request->Apellido)->orderBy ('Apellido','ASC')->paginate (5);
         return view ('Socios.socios')->with('socios',$socios);
     }
 
