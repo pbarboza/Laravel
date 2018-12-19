@@ -30,7 +30,7 @@
           <a class="dropdown-item" href="#"><i class="fas fa-award"></i> Prestaciones</a>
             <a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i> Perfiles de Socios</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#"><i class="fas fa-hotel"></i> Datos del Club</a>
+          <a class="dropdown-item" href="{{route('club.edit',1)}}"><i class="fas fa-hotel"></i> Datos del Club</a>
         </div>
       </li>
       
@@ -42,7 +42,7 @@
 
     </ul>
     <form class="form-inline my-2 my-lg-0" method="POST" action="{{ route('logout')}}"> 
-      <h8 style="justify-content: right">Bienvenido {{auth()->user()->name}}</h8>
+      <h8 style="justify-content: right; white-space: pre">Bienvenido {{auth()->user()->name}} </h8>
      
       {{ csrf_field() }}
         <button class="btn btn-danger btn-xs">Cerrar sesión</button>
