@@ -21,7 +21,7 @@ class CreateTableSocioMigration extends Migration
             $table->string('Domicilio');
             $table->string('Localidad');
             $table->date('FechaIngreso');
-            $table->integer('Telefono');
+            $table->string('Telefono');
             $table->timestamps();
         });
     }

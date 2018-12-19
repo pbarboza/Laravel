@@ -54,7 +54,7 @@
               <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Contraseña</label>
                      <div class="col-sm-10">
-                    <input type="password" data-toggle="tooltip" data-placement="right" title="Ingrese una nueva Contraseña" value="{{$usuario->passvisible}}" name="password" id="password" class="form-control input-sm" >
+                    <input type="password" data-toggle="tooltip" data-placement="right" title="Para cambiar la contraseña, ingrese una nueva" value="{{$usuario->passvisible}}" name="password" id="password" class="form-control input-sm" >
                     </div>  
               </div>
 

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Socio;
 use Illuminate\Support\Facades\Session;
+use Validator;
+use App\Http\Requests\SocioRequest;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class SocioController extends Controller
 {
@@ -13,6 +17,11 @@ class SocioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+  public function __construct(){
+    $this->middleware('auth');
+  }
+
+
     public function index()
     {
         $socios= socio::get();
@@ -35,14 +44,11 @@ class SocioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-     public function store(Request $request)
+     public function store(SocioRequest $request)
     {
-
-        $data = request()->validate([
-            'Apellido'=>'required']);
-
+       
        $socio = new Socio;
-       $socio -> idSocio = $request->DNI;
+       $socio -> idSocio = $request->idSocio;
        $socio -> Nombre = $request->Nombre;
        $socio -> Apellido = $request->Apellido;
        $socio -> FechaNacimiento = $request->FechaNacimiento;
@@ -51,7 +57,7 @@ class SocioController extends Controller
        $socio -> FechaIngreso = $request->FechaIngreso;
        $socio -> Telefono = $request->Telefono;
        $socio -> save();
-       Session::flash('message','Se agrego un nuevo socio'); 
+       Session::flash('message','Se agrego el nuevo socio  '. $socio->Apellido. ', ' .$socio->Nombre.''); 
        return redirect('socios');
     }
 
@@ -74,7 +80,8 @@ class SocioController extends Controller
      */
     public function edit($id)
     {
-        //
+       $socio = Socio::find($id);
+       return view('Socios/editarsocio')->with('socio',$socio);
     }
 
     /**
@@ -86,7 +93,33 @@ class SocioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+     
+      $request->validate([
+            'idSocio'=> 'required|size:8|unique:socio,idSocio,'.$id.',idSocio',
+            'Nombre' => 'required|min:3|max:255',
+            'Apellido' => 'required|min:3|max:255',
+            'FechaNacimiento' => 'required|size:10',
+            'Domicilio' => 'required|min:3|max:255',
+            'Localidad' => 'required|min:3|max:255',
+            'FechaIngreso' => 'required|size:10',
+            'Telefono' => 'required|integer|min:6',          
+         ]);
+
+
+           $socio = Socio::find($id);
+           $socio -> idSocio = $request->idSocio;
+           $socio -> Nombre = $request->Nombre;
+           $socio -> Apellido = $request->Apellido;
+           $socio -> FechaNacimiento = $request->FechaNacimiento;
+           $socio -> Domicilio = $request->Domicilio;
+           $socio -> Localidad = $request->Localidad;
+           $socio -> FechaIngreso = $request->FechaIngreso;
+           $socio -> Telefono = $request->Telefono;
+           $socio -> save();
+            Session::flash('message','Se editó el Socio '. $socio->Apellido. ' con Éxito'); 
+            return redirect('socios');
+
+
     }
 
     /**
