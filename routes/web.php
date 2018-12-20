@@ -17,6 +17,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('/socios','SocioController');
 	Route::resource('/usuario','Auth\RegisterController');
 	Route::resource('/club','ClubController');
+	Route::resource('/documentacion','DocumentacionController');
 
 
 
@@ -30,6 +31,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/usuario/{id}/destroy',[
 	 'uses' => 'Auth\RegisterController@destroy',
 	  'as' => 'usuario.destroy'
+
+	 ]);
+
+	Route::get('/documentacion/{idDocumentacion}/destroy',[
+	 'uses' => 'DocumentacionController@destroy',
+  		'as' => 'documentacion.destroy'
 
 	 ]);
 
