@@ -18,6 +18,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('/usuario','Auth\RegisterController');
 	Route::resource('/club','ClubController');
 	Route::resource('/documentacion','DocumentacionController');
+	Route::resource('/DocSocio','DocSocioController');
 
 
 

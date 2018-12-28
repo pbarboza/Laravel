@@ -59,7 +59,7 @@
                       <ul class="dropdown-menu" style="left:auto; right:auto; top:auto">
                        <li><a href="{{route('socios.edit',$socio->idSocio)}}"><i class="fas fa-user-edit"></i>   Modificar</a></li>
                        <li><a href=""><i class="fas fa-user-tie"></i>   Tutores</a></li>
-                       <li><a href=""><i class="fas fa-file"></i>   Documentación</a></li>
+                       <li><a href="{{route('DocSocio.edit',$socio->idSocio)}}"><i class="fas fa-file"></i>   Documentación</a></li>
                        <li><a href=""><i class="fas fa-file-invoice-dollar"></i>   Emitir Recibos</a></li>
                        <li><a href="{{route('socios.destroy',$socio->idSocio)}}" onclick="return confirm('¿Seguro que deseas eliminar el Socio?')"><i class="fas fa-user-times"></i>   Eliminar</a></li> 
                       </ul>
