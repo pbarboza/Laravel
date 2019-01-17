@@ -15,6 +15,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 	Route::resource('/socios','SocioController');
+	Route::resource('/tutores','TutorController');
 	Route::resource('/usuario','Auth\RegisterController');
 	Route::resource('/club','ClubController');
 	Route::resource('/documentacion','DocumentacionController');
@@ -30,6 +31,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('socios/{idSocio}/destroy',[
  		'uses' => 'SocioController@destroy',
   		'as' => 'socios.destroy'
+
+ 	]);
+
+
+ 	Route::get('tutores/{idTutor}/destroy',[
+ 		'uses' => 'TutorController@destroy',
+  		'as' => 'tutores.destroy'
 
  	]);
 

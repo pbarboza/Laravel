@@ -8,7 +8,7 @@ class Socio extends Model
 {
    protected $table='socio';
    protected $primaryKey= 'idSocio';
-   protected $fillable = array('Apellido','Nombre','FechaNacimiento','Domicilio','Localidad','FechaIngreso','Telefono');
+   protected $fillable = array('Apellido','Nombre','FechaNacimiento','Domicilio','Localidad','FechaIngreso','Telefono','idTutor');
    protected $hidden= ['created_at', 'updated_at'];  
 
 
@@ -20,6 +20,10 @@ public function scopeSearch($query,$Apellido){
 
 public function socio_documentacion (){
  	return $this->belongsToMany('App\socio_documentacion');
+ }
+
+ public function tutor(){
+ 	return $this->belongTo('App\Tutor');
  }
 
 

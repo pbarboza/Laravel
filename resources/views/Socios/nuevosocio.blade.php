@@ -91,6 +91,12 @@
               </div>
              </div>      
 
+
+           
+
+          <br>
+
+
               <div class="form-actions" align="right">
                      
                      {!! Form::submit('Guardar', ['class' => 'btn btn-success ' ] ) !!}
