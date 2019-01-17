@@ -14,15 +14,19 @@ class CreateTableSocioMigration extends Migration
     public function up()
     {
         Schema::create('socio', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->integer('idSocio');
             $table->string('Apellido');
             $table->string('Nombre');
-            $table->date('FechaNacimiento');
+            $table->string('FechaNacimiento');
             $table->string('Domicilio');
             $table->string('Localidad');
-            $table->date('FechaIngreso');
+            $table->string('FechaIngreso');
             $table->string('Telefono');
             $table->timestamps();
+
+
+
         });
     }
 

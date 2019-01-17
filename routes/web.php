@@ -20,7 +20,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('/documentacion','DocumentacionController');
 	Route::resource('/DocSocio','DocSocioController');
 
+    Route::get('DocSocio/{idSocio}/create',[
+ 		'uses' => 'DocSocioController@create',
+  		'as' => 'DocSocio.create'
 
+ 	]);
 
 
 	Route::get('socios/{idSocio}/destroy',[
@@ -40,6 +44,19 @@ Route::group(['middleware' => 'auth'], function () {
   		'as' => 'documentacion.destroy'
 
 	 ]);
+
+	Route::get('DocSocio/{idDocSocio}/destroy',[
+ 		'uses' => 'DocSocioController@destroy',
+  		'as' => 'DocSocio.destroy'
+
+ 	]);
+
+	
+	Route::get('/DocSocio/{file}/downloadFile',[
+ 		'uses' => 'DocSocioController@downloadFile',
+  		'as' => 'DocSocio.downloadFile'
+
+ 	]);
 
 });
 	

@@ -111,8 +111,15 @@ class DocumentacionController extends Controller
     public function destroy($id)
     {
       $documentacion = documentacion::find($id);
+      
+    if(count($documentacion->socio_documentacion)){
+         Session::flash('message','El tipo de documentación esta siendo usada por algún socio, no se puede eliminar'); 
+         return redirect('documentacion');
+    }
+    else{
+   
       $documentacion->delete();
       Session::flash('message','La documentacion '. $documentacion->Descripcion.' a sido borrado en forma exitosa'); 
        return redirect('documentacion');
-    }
+    }}
 }

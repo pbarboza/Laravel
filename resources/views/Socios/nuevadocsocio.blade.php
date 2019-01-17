@@ -8,9 +8,11 @@ documentacion_socio   -->
 <div class="container">
         <br><br>
 
-      
+     
+{!!Form::open (['route' => 'DocSocio.store', 'method' =>'POST','files'=>true, 'class' => 'form-horizontal'])!!} 
+ 
         <div class="widget-title"> <span class="icon"></span>
-                    <h4>Nueva Documentación del Socio</h4>
+                    <h4>Nueva Documentación para {{$socio->Apellido}}, {{$socio->Nombre}} </h4>
                     <br>
         </div>     
 
@@ -31,21 +33,25 @@ documentacion_socio   -->
 
   <div class="widget-content nopadding">
       
-          {!!Form::open (['route' => 'DocSocio.store', 'method' =>'POST','files'=>true, 'class' => 'form-horizontal'])!!} 
-
-         
                <div class="form-group row">
-                  {!! Form::label('idDocumentacion','Tipo Documentación',['class' =>'col-sm-2 col-form-label']) !!}
+                  {!! Form::hidden('socio_id','DNI',['class' =>'col-sm-2 col-form-label']) !!}
                   <div class="col-sm-10">
-                  {!! Form::select ('idDocumentacion',$documentacion,null,['class' =>'form-control input-sm','placeholder'=>'Seleccione una opción','required']) !!}
+                  {!! Form::hidden('socio_id',$socio->idSocio,null,['class' =>'form-control input-sm','disabled']) !!}
+                  </div>
+               </div>
+
+               <div class="form-group row">
+                  {!! Form::label('documentacion_id','Tipo Documentación',['class' =>'col-sm-2 col-form-label']) !!}
+                  <div class="col-sm-10">
+                  {!! Form::select ('documentacion_id',$documentacion,null,['class' =>'form-control input-sm','placeholder'=>'Seleccione una opción','required']) !!}
                   </div>
                </div>
 
 
               <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">Descripción</label>
+                  {!! Form::label('descripcion','Descripción',['class' =>'col-sm-2 col-form-label']) !!}
                    <div class="col-sm-10">
-                  <input type="text"  name="Descripcion" value="{{ old('Descripcion') }}" id="Descripcion" class="form-control input-sm" required>
+                 {!! Form::text ('descripcion',null,['class' =>'form-control input-sm','placeholder'=>'Descripción de la documentación','required']) !!}
                 </div>
               </div>
 
@@ -62,7 +68,7 @@ documentacion_socio   -->
             <div class="form-actions" align="right">
                      
                      {!! Form::submit('Guardar', ['class' => 'btn btn-success ' ] ) !!}
-                     <a href="/documentacion"<button type="submit" class="btn btn-danger">Cancelar</button> </a>
+                     <a href="{{route('DocSocio.edit',$socio->idSocio)}}"<button type="submit" class="btn btn-danger">Cancelar</button> </a>
             </div>
       {!!Form::close()!!} 
 </div>

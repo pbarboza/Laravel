@@ -18,4 +18,9 @@ public function scopeSearch($query,$Apellido){
 }
 
 
+public function socio_documentacion (){
+ 	return $this->belongsToMany('App\socio_documentacion');
+ }
+
+
 }

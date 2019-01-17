@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableDocSocioMigration extends Migration
+class CreateTableDocumentacionMigration extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,16 @@ class CreateTableDocSocioMigration extends Migration
      */
     public function up()
     {
-        Schema::create('DocSocio', function (Blueprint $table) {
-            $table->increments('idDocSocio');
-            $table->integer('idSocio');
-            $table->integer('idDocumentacion');
-            $table->string('descripcion');
-            $table->string('archivo');
+        Schema::create('documentacion', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->increments('idDocumentacion');
+            $table->string('Descripcion');
+            $table->string('Obligatorio');
             $table->timestamps();
         });
+
+
+       
     }
 
     /**
@@ -30,6 +32,6 @@ class CreateTableDocSocioMigration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('DocSocio');
+        Schema::dropIfExists('documentacion');
     }
 }

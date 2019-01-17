@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 // use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\redirect;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -63,7 +64,7 @@ class RegisterController extends Controller
         $user = User::find($id);
         $user->delete();
         Session::flash('message','El Usuario '. $user->apellido. ', ' .$user->name .' a sido borrado en forma exitosa'); 
-       return redirect('usuario');
+         return redirect('usuario');
     }
 
 

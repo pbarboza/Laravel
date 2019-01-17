@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="socios">Socios <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/socios">Socios <span class="sr-only">(current)</span></a>
       </li>
      
 
@@ -26,7 +26,7 @@
           Configuraciones
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="documentacion"> <i class="fas fa-id-card"></i> Documentacion</a>
+          <a class="dropdown-item" href="/documentacion"> <i class="fas fa-id-card"></i> Documentacion</a>
           <a class="dropdown-item" href="#"><i class="fas fa-award"></i> Prestaciones</a>
             <a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i> Perfiles de Socios</a>
           <div class="dropdown-divider"></div>
@@ -36,7 +36,7 @@
       
        
       <li class="nav-item active">
-        <a class="nav-link" href="usuario">Usuarios <span class="sr-only"></span></a>
+        <a class="nav-link" href="/usuario">Usuarios <span class="sr-only"></span></a>
       </li>
 
 

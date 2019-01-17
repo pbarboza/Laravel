@@ -9,6 +9,8 @@ use Validator;
 use App\Http\Requests\SocioRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Redirect;
+
 
 class SocioController extends Controller
 {

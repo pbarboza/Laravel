@@ -55,16 +55,35 @@
                   <td>{{$socio->FechaNacimiento}}</td>     
                   <td>{{$socio->Localidad}}</td>               
                   <td>
-                    <div class="center" align="center" class="btn-group center"><a class="btn btn-default" title="Acciones" data-toggle="dropdown" href=""><i class="fas fa-cog"></i> </a>
+                      <div class="dropdown" align="center">
+                       <button class="btn btn-secondary dropdown-toggle"  type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" > <i class="fas fa-cog"></i>
+                       </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <a href="{{route('socios.edit',$socio->idSocio)}}"><button class="dropdown-item" type="button" > <i class="fas fa-user-edit"></i> Modificar</button></a>
+                            <a href=""><button class="dropdown-item" type="button"> <i class="fas fa-user-tie"></i>  Tutor</button> </a>
+                            <a href="{{route('DocSocio.edit',$socio->idSocio)}}"><button class="dropdown-item" type="button"> <i class="fas fa-file"></i>  Documentación</button></a>
+                            <a href=""><button class="dropdown-item" type="button"> <i class="fas fa-file-invoice-dollar"></i>  Recibos</button></a>
+                            <a href="{{route('socios.destroy',$socio->idSocio)}}" onclick="return confirm('¿Seguro que deseas eliminar el Socio?')"> <button class="dropdown-item" type="button"> <i class="fas fa-user-times"></i> Eliminar</button></a>
+                          </div>
+                      </div>
+                  </td> 
+
+
+
+
+
+
+
+                  <!--   <div class="center" align="center" class="btn-group center"><a class="btn btn-default" title="Acciones" data-toggle="dropdown" href=""><i class="fas fa-cog"></i> </a>
                       <ul class="dropdown-menu" style="left:auto; right:auto; top:auto">
                        <li><a href="{{route('socios.edit',$socio->idSocio)}}"><i class="fas fa-user-edit"></i>   Modificar</a></li>
-                       <li><a href=""><i class="fas fa-user-tie"></i>   Tutores</a></li>
+                       <li><a href=""><i class="fas fa-user-tie"></i>   Tutor</a></li>
                        <li><a href="{{route('DocSocio.edit',$socio->idSocio)}}"><i class="fas fa-file"></i>   Documentación</a></li>
                        <li><a href=""><i class="fas fa-file-invoice-dollar"></i>   Emitir Recibos</a></li>
                        <li><a href="{{route('socios.destroy',$socio->idSocio)}}" onclick="return confirm('¿Seguro que deseas eliminar el Socio?')"><i class="fas fa-user-times"></i>   Eliminar</a></li> 
                       </ul>
                     </div>
-                  </td>
+                  </td> -->
                 </tr>
 
                @endforeach
