@@ -19,7 +19,7 @@
                     {!!Form::open (['route' => 'tutores.index', 'method' =>'GET' , 'class' => 'navbar-form pull-left'])!!} 
                     <br>
                         <div class="form-group">
-                          {!! Form::text ('Apellido',null,['class'=>'form-control', 'placeholder'=>'Buscar Tutor','aria-describedby' => 'search']) !!}
+                          {!! Form::text ('Apellido',null,['class'=>'form-control', 'placeholder'=>'Buscar Tutor por apellido','aria-describedby' => 'search']) !!}
                         </div>
 
                     {!!Form::close()!!} 
@@ -54,16 +54,16 @@
                   <td>{{$tutor->Apellido}}</td>
                   <td>{{$tutor->Nombre}}</td>
                   <td>{{$tutor->Telefono}}</td>     
-                  <td>{{$tutor->Domicilio}}</td>  
-                  <td>{{$tutor->Celular}}</td>               
+                  <td>{{$tutor->Celular}}</td>  
+                  <td>{{$tutor->Domicilio}}</td>               
                    <td>
                       <div class="dropdown" align="center">
                        <button class="btn btn-secondary dropdown-toggle"  type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" > <i class="fas fa-cog"></i>
                        </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <a href=""><button class="dropdown-item" type="button" > <i class="fas fa-user-edit"></i> Modificar</button></a>
-                            <a href=""><button class="dropdown-item" type="button"> <i class="fas fa-user-tie"></i> Vincular Socio</button> </a>
-                            <a href=""> <button class="dropdown-item" type="button"> <i class="fas fa-user-times"></i> Eliminar</button></a>
+                            <a href="{{route('tutores.edit',$tutor->idTutor)}}"><button class="dropdown-item" type="button" > <i class="fas fa-user-edit"></i> Modificar</button></a>
+                             <a href="{{route('socios.listarSocios',$tutor->idTutor)}}"><button class="dropdown-item" type="button"> <i class="fas fa-user-tie"></i> Vincular Socio</button> </a>
+                            <a href="{{route('tutores.destroy',$tutor->idTutor)}}" onclick="return confirm('¿Seguro que deseas eliminar el Tutor?')"> <button class="dropdown-item" type="button"> <i class="fas fa-user-times"></i> Eliminar</button></a>
                           </div>
                       </div>
                   </td> 

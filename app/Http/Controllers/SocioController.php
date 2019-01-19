@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Socio;
+use App\Tutor;
 use Illuminate\Support\Facades\Session;
 use Validator;
 use App\Http\Requests\SocioRequest;
@@ -124,6 +125,43 @@ class SocioController extends Controller
 
     }
 
+
+     public function updateTutor($idSocio,$idTutor)
+    {
+        $socio = Socio::find($idSocio);
+        $socio -> TutorId = $idTutor;
+         $socio -> save();
+            Session::flash('message','Se actualizó el Tutor de: '. $socio->Apellido. ','. $socio->Nombre.' con Éxito'); 
+            return redirect('socios');
+
+
+    }
+
+
+ public function cambiarTutor($idSocio)
+    {
+        $socio = Socio::find($idSocio);
+         $tutores = tutor::paginate(25);
+        return view('Tutores/asignartutor')
+               ->with('socio',$socio)
+                ->with('tutores',$tutores);
+
+    }
+
+
+    public function desvincularTutor($idSocio)
+    {
+        $socio = Socio::find($idSocio);
+        $socio -> TutorId = null;
+         $socio -> save();
+            Session::flash('message','Se desvinculó el Tutor del socio: '. $socio->Apellido. ','. $socio->Nombre.' con Éxito'); 
+            return redirect('socios');
+
+
+    }
+
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -137,4 +175,34 @@ class SocioController extends Controller
         Session::flash('message','El Socio '. $socio->Apellido. ', ' .$socio->Nombre .' a sido borrado en forma exitosa'); 
        return redirect('socios');
     }
+
+   public function buscarTutor($id)
+    {
+        $socio = socio::find($id);
+        $tutores = tutor::paginate(25);
+        if (is_null($socio->TutorId)){
+               return view('Tutores/asignartutor')
+               ->with('socio',$socio)
+               ->with('tutores',$tutores);
+        } 
+       
+        else {
+               $tutor = tutor::find($socio->TutorId);
+               return view('Tutores/tutorsocio')
+               ->with('socio',$socio)
+               ->with('tutor',$tutor);
+        } 
+    }
+
+
+ public function listarSocios($id)
+    {
+      $tutor = tutor::find($id);
+      $socio = socio::paginate(25);
+      return view('Tutores/asignarsocio')
+               ->with('socios',$socio)
+               ->with('tutor',$tutor);
+    }
+  
+
 }

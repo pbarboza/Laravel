@@ -21,46 +21,87 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('/documentacion','DocumentacionController');
 	Route::resource('/DocSocio','DocSocioController');
 
-    Route::get('DocSocio/{idSocio}/create',[
+    Route::get('DocSocio/create/{idSocio}',[
  		'uses' => 'DocSocioController@create',
   		'as' => 'DocSocio.create'
 
  	]);
 
 
-	Route::get('socios/{idSocio}/destroy',[
+	Route::get('socios/destroy/{idSocio}',[
  		'uses' => 'SocioController@destroy',
   		'as' => 'socios.destroy'
 
  	]);
 
+	Route::get('socios/buscarTutor/{idSocio}',[
+ 		'uses' => 'SocioController@buscarTutor',
+  		'as' => 'socios.buscarTutor',
+  		
+ 	]);
 
- 	Route::get('tutores/{idTutor}/destroy',[
+	Route::get('socios/listarSocios/{idTutor}',[
+ 		'uses' => 'SocioController@listarSocios',
+  		'as' => 'socios.listarSocios',
+  		
+ 	]);
+
+
+	Route::get('socios/cambiarTutor/{idSocio}',[
+ 		'uses' => 'SocioController@cambiarTutor',
+  		'as' => 'socios.cambiarTutor',
+  		
+ 	]);
+
+
+	Route::get('socios/updateTutor/{idSocio},{idTutor}',[
+ 		'uses' => 'SocioController@updateTutor',
+  		'as' => 'socios.updateTutor',
+  		
+ 	]);
+
+
+	Route::get('socios/desvincularTutor/{idSocio}',[
+ 		'uses' => 'SocioController@desvincularTutor',
+  		'as' => 'socios.desvincularTutor',
+  		
+ 	]);
+
+
+	Route::get('tutores/asignartutor/{idSocio}',function(){
+		return view('tutores/asignartutor');
+	}
+  		
+ 	);
+
+
+ 	Route::get('tutores/destroy/{idTutor}',[
  		'uses' => 'TutorController@destroy',
   		'as' => 'tutores.destroy'
 
  	]);
 
-	Route::get('/usuario/{id}/destroy',[
+ 
+	Route::get('/usuario/destroy/{id}',[
 	 'uses' => 'Auth\RegisterController@destroy',
 	  'as' => 'usuario.destroy'
 
 	 ]);
 
-	Route::get('/documentacion/{idDocumentacion}/destroy',[
+	Route::get('/documentacion/destroy/{idDocumentacion}',[
 	 'uses' => 'DocumentacionController@destroy',
   		'as' => 'documentacion.destroy'
 
 	 ]);
 
-	Route::get('DocSocio/{idDocSocio}/destroy',[
+	Route::get('DocSocio/destroy/{idDocSocio}',[
  		'uses' => 'DocSocioController@destroy',
   		'as' => 'DocSocio.destroy'
 
  	]);
 
 	
-	Route::get('/DocSocio/{file}/downloadFile',[
+	Route::get('/DocSocio/downloadFile/{file}',[
  		'uses' => 'DocSocioController@downloadFile',
   		'as' => 'DocSocio.downloadFile'
 

@@ -8,7 +8,7 @@ class Socio extends Model
 {
    protected $table='socio';
    protected $primaryKey= 'idSocio';
-   protected $fillable = array('Apellido','Nombre','FechaNacimiento','Domicilio','Localidad','FechaIngreso','Telefono','idTutor');
+   protected $fillable = array('Apellido','Nombre','FechaNacimiento','Domicilio','Localidad','FechaIngreso','Telefono','TutorId');
    protected $hidden= ['created_at', 'updated_at'];  
 
 

@@ -60,7 +60,7 @@
                        </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                             <a href="{{route('socios.edit',$socio->idSocio)}}"><button class="dropdown-item" type="button" > <i class="fas fa-user-edit"></i> Modificar</button></a>
-                            <a href=""><button class="dropdown-item" type="button"> <i class="fas fa-user-tie"></i>  Tutor</button> </a>
+                            <a href="{{route('socios.buscarTutor',$socio->idSocio)}}"><button class="dropdown-item" type="button"> <i class="fas fa-user-tie"></i>  Tutor</button> </a>
                             <a href="{{route('DocSocio.edit',$socio->idSocio)}}"><button class="dropdown-item" type="button"> <i class="fas fa-file"></i>  Documentación</button></a>
                             <a href=""><button class="dropdown-item" type="button"> <i class="fas fa-file-invoice-dollar"></i>  Recibos</button></a>
                             <a href="{{route('socios.destroy',$socio->idSocio)}}" onclick="return confirm('¿Seguro que deseas eliminar el Socio?')"> <button class="dropdown-item" type="button"> <i class="fas fa-user-times"></i> Eliminar</button></a>
